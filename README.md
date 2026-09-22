@@ -41,7 +41,17 @@ sql/schema.sql
 
 Esse arquivo cria o banco `sistema_condominio` e as tabelas necessárias.
 
-### 5. Criar o arquivo `.env`
+### 5. Inserir dados de teste (opcional)
+
+Para preencher o banco com dados de exemplo, execute:
+
+```text
+sql/seed.sql
+```
+
+Esse arquivo remove os dados de teste anteriores das tabelas `condominios` e `unidades` e insere novos registros de exemplo.
+
+### 6. Criar o arquivo `.env`
 
 Na raiz do projeto, crie um arquivo chamado:
 
@@ -69,7 +79,7 @@ pela senha do seu MySQL.
 
 O arquivo `.env` não deve ser enviado para o GitHub.
 
-### 6. Executar a aplicação
+### 7. Executar a aplicação
 
 ```bash
 npm run dev
@@ -108,7 +118,8 @@ DELETE /unidades/:id
 ```text
 sistema-condominio-api/
 ├── sql/
-│   └── schema.sql
+│   ├── schema.sql
+│   └── seed.sql
 ├── src/
 │   ├── database/
 │   │   └── connection.ts
