@@ -24,17 +24,70 @@ export async function condominiosRoutes(app: FastifyInstance) {
 
     return rows
   })
-  
-app.get<{ Params: CondominioParams }>('/condominios/:id', async (request, reply) => {
-  const { id } = request.params
 
-  const [rows] = await db.query(
-    'SELECT * FROM condominios WHERE id = ?',
-    [id]
+  app.get<{ Params: CondominioParams }>('/condominios/:id', async (request, reply) => {
+    const { id } = request.params
+
+    const [rows] = await db.query(
+      'SELECT * FROM condominios WHERE id = ?',
+      [id]
+    )
+
+    return rows
+  })
+  app.put<{ Params: CondominioParams; Body: CondominioBody }>(
+    '/condominios/:id',
+    async (request, reply) => {
+      const { id } = request.params
+      const {
+        nome,
+        cnpj,
+        endereco,
+        numero,
+        bairro,
+        cidade,
+        estado,
+        cep,
+        telefone,
+        email
+      } = request.body
+      await db.execute(
+        `UPDATE condominios
+   SET nome = ?, cnpj = ?, endereco = ?, numero = ?, bairro = ?,
+       cidade = ?, estado = ?, cep = ?, telefone = ?, email = ?
+   WHERE id = ?`,
+        [
+          nome,
+          cnpj,
+          endereco,
+          numero,
+          bairro,
+          cidade,
+          estado,
+          cep,
+          telefone,
+          email,
+          id
+        ]
+      )
+
+      return reply.send({
+        message: 'Condomínio atualizado com sucesso!'
+      })
+    }
   )
+  app.delete<{ Params: CondominioParams }>('/condominios/:id', async (request, reply) => {
+    const { id } = request.params
 
-  return rows
-})
+    await db.execute(
+      'DELETE FROM condominios WHERE id = ?',
+      [id]
+    )
+
+    return reply.send({
+      message: 'Condomínio removido com sucesso!'
+    })
+  })
   app.post<{ Body: CondominioBody }>('/condominios', async (request, reply) => {
     const {
       nome,
