@@ -1,6 +1,9 @@
 import Fastify from 'fastify'
+import { condominiosRoutes } from './routes/condominios.routes.js'
 
 const app = Fastify({ logger: true })
+
+app.register(condominiosRoutes)
 
 app.get('/', async () => {
   return { hello: 'world' }
