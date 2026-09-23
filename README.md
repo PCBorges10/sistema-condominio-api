@@ -49,7 +49,7 @@ Para preencher o banco com dados de exemplo, execute:
 sql/seed.sql
 ```
 
-Esse arquivo remove os dados de teste anteriores das tabelas `condominios` e `unidades` e insere novos registros de exemplo.
+Esse arquivo remove os dados de teste anteriores das tabelas `condominios`, `unidades` e `moradores` e insere novos registros de exemplo.
 
 ### 6. Criar o arquivo `.env`
 
@@ -113,6 +113,16 @@ PUT    /unidades/:id
 DELETE /unidades/:id
 ```
 
+### Moradores
+
+```text
+GET    /moradores
+GET    /moradores/:id
+POST   /moradores
+PUT    /moradores/:id
+DELETE /moradores/:id
+```
+
 ## Estrutura principal do projeto
 
 ```text
@@ -125,7 +135,8 @@ sistema-condominio-api/
 │   │   └── connection.ts
 │   ├── routes/
 │   │   ├── condominios.routes.ts
-│   │   └── unidades.routes.ts
+│   │   ├── unidades.routes.ts
+│   │   └── moradores.routes.ts
 │   └── index.ts
 ├── .gitignore
 ├── package.json
