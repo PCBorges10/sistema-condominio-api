@@ -24,3 +24,14 @@ CREATE TABLE IF NOT EXISTS unidades (
     condominio_id INT NOT NULL,
     FOREIGN KEY (condominio_id) REFERENCES condominios(id)
 );
+
+CREATE TABLE IF NOT EXISTS moradores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(100),
+    tipo VARCHAR(20) NOT NULL,
+    unidade_id INT NOT NULL,
+    FOREIGN KEY (unidade_id) REFERENCES unidades(id)
+);

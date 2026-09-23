@@ -3,6 +3,7 @@ USE sistema_condominio;
 -- Limpa os dados de teste anteriores
 SET FOREIGN_KEY_CHECKS = 0;
 
+TRUNCATE TABLE moradores;
 TRUNCATE TABLE unidades;
 TRUNCATE TABLE condominios;
 
@@ -46,3 +47,24 @@ VALUES
 ('201', 'B', 2, 1),
 ('301', 'A', 3, 2),
 ('302', 'A', 3, 2);
+
+-- Moradores de exemplo
+INSERT INTO moradores
+(nome, cpf, telefone, email, tipo, unidade_id)
+VALUES
+(
+    'Joao Silva',
+    '123.456.789-00',
+    '11999999999',
+    'joao@email.com',
+    'proprietario',
+    1
+),
+(
+    'Maria Oliveira',
+    '987.654.321-00',
+    '11888888888',
+    'maria@email.com',
+    'inquilino',
+    2
+);
